@@ -1669,7 +1669,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       disable: false
     };
 
-    _this.bind(['showTooltip', 'updateTooltip', 'hideTooltip', 'globalRebuild', 'globalShow', 'globalHide', 'onWindowResize']);
+    _this.bind(['showTooltip', 'updateTooltip', 'hideTooltip', 'globalRebuild', 'globalShow', 'globalHide', 'onWindowResize', 'setStyle']);
 
     _this.mount = true;
     _this.delayShowLoop = null;
@@ -2022,6 +2022,16 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
     value: function removeScrollListener() {
       window.removeEventListener('scroll', this.hideTooltip);
     }
+  }, {
+    key: 'setStyle',
+    value: function setStyle() {
+      var style = this.props.style;
+
+      var node = _reactDom2.default.findDOMNode(this);
+      Object.keys(style).forEach(function (key) {
+        node.style[key] = style[key];
+      });
+    }
 
     // Calculation the position
 
@@ -2049,6 +2059,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       // Set tooltip position
       node.style.left = result.position.left + 'px';
       node.style.top = result.position.top + 'px';
+      this.setStyle();
     }
 
     /**
@@ -2140,11 +2151,13 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
   disable: _propTypes2.default.bool,
   scrollHide: _propTypes2.default.bool,
   resizeHide: _propTypes2.default.bool,
-  wrapper: _propTypes2.default.string
+  wrapper: _propTypes2.default.string,
+  style: _propTypes2.default.object
 }, _class2.defaultProps = {
   insecure: true,
   resizeHide: true,
-  wrapper: 'div'
+  wrapper: 'div',
+  style: {}
 }, _class2.supportedWrappers = ['div', 'span'], _temp)) || _class) || _class) || _class) || _class) || _class) || _class;
 
 /* export default not fit for standalone, it will exports {default:...} */
