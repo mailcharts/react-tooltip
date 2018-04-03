@@ -440,7 +440,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       };
 
       this.clearTimer();
-      if (delayHide) {
+      if (delayHide && e.type !== 'scroll') {
         this.delayHideLoop = setTimeout(resetState, parseInt(delayHide, 10));
       } else {
         resetState();

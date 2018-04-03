@@ -368,7 +368,7 @@ class ReactTooltip extends Component {
     }
 
     this.clearTimer()
-    if (delayHide) {
+    if (delayHide && e.type !== 'scroll') {
       this.delayHideLoop = setTimeout(resetState, parseInt(delayHide, 10))
     } else {
       resetState()
